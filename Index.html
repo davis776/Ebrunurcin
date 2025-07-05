@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HACKED SYSTEM</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      overflow: hidden;
+      font-family: 'Courier New', Courier, monospace;
+      color: #00ff00;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .terminal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.85);
+      border: 1px solid #00ff00;
+      padding: 30px;
+      max-width: 90%;
+      box-shadow: 0 0 20px #00ff00;
+      z-index: 1;
+    }
+
+    .terminal h1 {
+      color: red;
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    .terminal pre {
+      font-size: 14px;
+      white-space: pre-wrap;
+    }
+
+    @keyframes blink {
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0; }
+    }
+
+    .blinking {
+      animation: blink 1s infinite;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="terminal">
+  <h1 class="blinking">!!! SYSTEM BREACH DETECTED !!!</h1>
+  <pre>
+Initializing system breach...
+Bypassing firewall...
+Gaining root access...
+█▓▒░ HACK COMPLETE ░▒▓█
+
+> IP Logged: 192.168.0.66
+> Status: UNAUTHORIZED ACCESS
+
+██████████████████████████░░░░░░░░░░░░░ 76%
+
+Injecting payload...
+WARNING: Critical system override
+
+>> Welcome, Commander. All systems are yours now.
+  </pre>
+</div>
+
+<script>
+  const canvas = document.getElementById("matrix");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const letters = "アァイウエカキクケコサシスセタチツネノハヒフヘホABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
+  const fontSize = 14;
+  const columns = canvas.width / fontSize;
+  const drops = Array.from({ length: columns }).fill(1);
+
+  function draw() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#0F0";
+    ctx.font = fontSize + "px Courier New";
+
+    for (let i = 0; i < drops.length; i++) {
+      const text = letters[Math.floor(Math.random() * letters.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+      if (drops[i] * fontSize > canvas.height || Math.random() > 0.975)
+        drops[i] = 0;
+
+      drops[i]++;
+    }
+  }
+
+  setInterval(draw, 35);
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script>
+
+</body>
+</html>
